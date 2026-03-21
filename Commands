@@ -1,6 +1,12 @@
 py manage.py makemigrations
 py manage.py migrate
 
+
+##run the admin
+py manage.py runserver
+
+
+
 ##no name
 py manage.py makemigrations --empty main_app
 
@@ -22,7 +28,7 @@ py manage.py showmigrations main_app
 python manage.py showmigrations -l
 
 ##delete migration
-py manage.py migrate photos zero
+py manage.py migrate main_app zero
 
 py caller.py
 
@@ -30,8 +36,6 @@ py manage.py createsuperuser
 
 py manage.py dbshell
 
-##run the admin
-py manage.py runserver
 
 pip install psycopg2-binary
 pip install psycopg2
@@ -41,7 +45,26 @@ python manage.py migrate main_app 0011
 
 python.exe -m pip install --upgrade pip
 
-py manage.py startapp common
+py manage.py startapp todo_app
+
+GIT COMMANDS
+
+git init
+git remote add origin https://github.com/vtahmi/petStangram.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+git add .
+git commit -m "Update"
+git push
+git pull
+
+git status
+
+git stash push -u -m "old laptop local changes"
+git stash list
+git stash pop
 
 
 
