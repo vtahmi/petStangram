@@ -2,16 +2,18 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
-from petStangram.accounts.forms import AppUserCreationForm
+from petStangram.accounts.forms import AppUserCreationForm, AppUserChangeForm
 from petStangram.accounts.models import Profile
 
 UserModel = get_user_model()
 
 @admin.register(UserModel)
 class AppUserAdmin(UserAdmin):
-    ordering = ('email',)
+    model = UserModel
+    ordering = ('pk',)
     list_display = ('email', 'is_staff', 'is_superuser', 'is_active')
     add_form = AppUserCreationForm
+    form = AppUserChangeForm
 
     fieldsets = (
         (None, {
@@ -38,6 +40,7 @@ class AppUserAdmin(UserAdmin):
 
 
 
-# @admin.register(Profile)
-# class ProfileAdmin(admin.ModelAdmin):
-#     list_display = ('user')
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    model = Profile
+    list_display = ('user',)

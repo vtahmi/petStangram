@@ -1,8 +1,13 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 UserModel = get_user_model()
 class AppUserCreationForm(UserCreationForm):
     class Meta:
         model = UserModel
         fields = ('email',)
+
+class AppUserChangeForm(UserChangeForm):
+    class Meta:
+        model = UserModel
+        fields = '__all__'
