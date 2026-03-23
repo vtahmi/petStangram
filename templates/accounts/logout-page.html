@@ -1,0 +1,23 @@
+{%extends "common/base.html" %}
+{% block content %}
+<main>
+
+    <!-- Start Login Section-->
+    <div>
+        <div>
+            <h1>Petstagram</h1>
+
+            <!-- Start Login Form-->
+            <form method="post">
+                {% csrf_token %}
+                <!-- Logout Button-->
+                <button type="submit">Log out</button>
+            </form>
+            <!-- End Logout Form -->
+
+        </div>
+    </div>
+    <!-- End Logout Section-->
+
+</main>
+{% endblock %}

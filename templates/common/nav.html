@@ -5,7 +5,8 @@
             <div class="logo">
                 <!-- Link to Home Page -->
                 <a href="#">
-                    <img width="50px" src="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}" alt="img1">
+                    <img width="50px" src="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}"
+                         alt="img1">
                 </a>
 
                 <!-- Link to Home Page -->
@@ -30,18 +31,38 @@
                         </a>
                     </li>
 
+                    {% if not request.user.is_authenticated %}
                     <li class="nav-item">
-                        <!-- Link to Profile Page -->
+                        <!-- Link to Login Page -->
+                        <a href="{% url 'login' %}">
+                            <i>Login</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <!-- Link to Register Page -->
                         <a href="{% url 'register' %}">
                             <i>Register</i>
                         </a>
                     </li>
+                    {% else %}
+
                     <li class="nav-item">
-                        <!-- Log out -->
-                        <a href="{% url 'login' %}">
-                            <i>Log in</i>
+                        <!-- Link to Profile Page -->
+                        <a href="#">
+                            <i>Profile</i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="button" type="submit"><i>Logout</i></button>
+                        </form>
+                    </li>
+
+
+                    {% endif %}
+
                 </ul>
             </div>
         </div>

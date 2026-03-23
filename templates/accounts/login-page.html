@@ -1,5 +1,5 @@
 {%extends "common/base.html" %}
-
+{% load placeholders %}
 {% block content %}
 <main>
 
@@ -9,16 +9,12 @@
             <h1>Petstagram</h1>
 
             <!-- Start Login Form-->
-            <form action="#">
-                <p>
-                    <label for="id_username">Username:</label>
-                    <input type="text" placeholder="Username">
-                </p>
-                <p>
-                    <label for="id_password">Password:</label>
-                    <input type="password" placeholder="Password">
-                </p>
-
+            <form method="post">
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.username.errors }}
+                {{ form.password }}
+                {{ form.password.errors }}
                 <!-- Login Button-->
                 <button type="submit">Log in</button>
             </form>
