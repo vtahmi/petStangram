@@ -16,8 +16,10 @@ def pet_details(request, username:str, pet_slug:str):
 def pet_add(request):
     form = PetCreateForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('profile-details', pk=1)  # TODO change to current user's profile pk
+        pet = form.save(commit=False)
+        pet.user = request.user
+        pet.save()
+        return redirect('profile-details', pk=request.user.pk)  # TODO change to current user's profile pk
     context = {
         'form': form,}
     return render(request, 'pets/pet-add-page.html', context)
