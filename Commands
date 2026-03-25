@@ -28,7 +28,7 @@ py manage.py showmigrations main_app
 python manage.py showmigrations -l
 
 ##delete migration
-py manage.py migrate main_app zero
+py manage.py migrate accounts zero
 
 py caller.py
 
@@ -36,6 +36,7 @@ py manage.py createsuperuser
 
 py manage.py dbshell
 
+py manage.py runserver
 
 pip install psycopg2-binary
 pip install psycopg2
