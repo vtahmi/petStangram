@@ -10,8 +10,10 @@ from petStangram.photos.models import Photo
 
 def home_page(request):
     all_photos = Photo.objects.prefetch_related('tagged_pets').all()
+    comment_form = CommentForm()
     context = {
         'all_photos': all_photos,
+        'comment_form': comment_form,
     }
     return render(request, 'common/home-page.html', context)
 

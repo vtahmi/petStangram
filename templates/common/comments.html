@@ -1,28 +1,19 @@
+{% load static %}
 <!-- Start Comments Section -->
 {% for comment in comments %}
-    <div class="comments">
-        <div class="top">
-            <div class="userDetails">
-                <div class="comment-data">
-                    <div class="profilepic">
-                        <div class="profile_img">
-                            <div class="image">
-                                <!-- User Profile Image -->
-                                <img src="/static/images/person.png" alt="img8">
-                            </div>
-                        </div>
-                    </div>
-                    <p>
-                        <!-- Link to User Profile Details Page-->
-                        <!-- User First and/or Last Name or username-->
-                        <a href="">{{ request.user.profile.full_name }}</a>
-                        <!-- User Comment -->
-                        - {{ comment.text }}
-                    </p>
-                </div>
-                <span>{{ comment.date_time_of_publication|date:'M. d, Y, H:m' }}</span>
-            </div>
-        </div>
+<div class="comments">
+    <div class="comment-body">
+        {{ comment.text }}
     </div>
+    <div class="comment-header">
+        <strong>{{ comment.user.profile.full_name|default:'anonymous' }}</strong>
+    </div>
+    <div class="comment-date">
+        {{ comment.date_time_of_publication|date:'M d, Y, H:i' }}
+    </div>
+
+</div>
+{% empty %}
+<p>No comments yet.</p>
 {% endfor %}
 <!-- End Comments Section -->

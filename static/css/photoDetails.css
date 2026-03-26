@@ -66,3 +66,11 @@
     width: 20px;
     margin-left: 5px;
 }
+
+.comment-header {
+    margin-left: 10px;
+}
+
+.comment-date {
+    margin-left: 10px;
+}
