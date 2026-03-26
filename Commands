@@ -28,7 +28,7 @@ py manage.py showmigrations main_app
 python manage.py showmigrations -l
 
 ##delete migration
-py manage.py migrate accounts zero
+py manage.py migrate pets zero
 
 py caller.py
 

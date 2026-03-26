@@ -1,0 +1,4 @@
+<form method="post" action="{% url 'photo-delete' photo.pk %}">
+    {% csrf_token %}
+    <button type="submit" class="delete-btn">Delete</button>
+</form>

@@ -6,8 +6,8 @@
                 <div class="profilepic">
                     <div class="profile_img">
                         <div class="image">
-                            {% if request.user.profile.profile_picture %}
-                                <img src="{{ request.user.profile.profile_picture }}" alt="profile">
+                            {% if photo.user.profile.profile_picture %}
+                                <img src="{{ photo.user.profile.profile_picture.url }}" alt="profile">
                             {% else %}
                                 <img src="{% static 'images/person.png' %}" alt="profile">
                             {% endif %}
@@ -21,17 +21,30 @@
                 <br>
                 <span>{{ photo.location }}</span>
             </h3>
+
+            <!-- 🔴 EDIT / DELETE (само за собственика) -->
+            {% if request.user == photo.user %}
+            <div class="postActions">
+                <a href="{% url 'photo-edit' photo.pk %}" class="edit-btn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </div>
+            <div class="postActions">
+                <a href="{% url 'photo-delete' photo.pk %}" class="delete-btn">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+            {% endif %}
+            <!-- 🔴 КРАЙ -->
         </div>
     </div>
 
-    <!-- 🔴 ТУК Е ВАЖНОТО -->
-    <!-- Post image – снимката е линк към details -->
+    <!-- Post image -->
     <div class="imgBx" id="{{ photo.pk }}">
         <a href="{% url 'photo-details' pk=photo.pk %}">
             <img src="{{ photo.photo.url }}" alt="post" class="cover">
         </a>
     </div>
-    <!-- 🔴 КРАЙ -->
 
     <div class="bottom">
         <div class="actionBtns">

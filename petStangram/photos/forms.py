@@ -15,3 +15,9 @@ class PhotoAddForm(forms.ModelForm):
             'tagged_pets': 'Tagged Pets',
         }
 
+
+class PhotoEditForm(PhotoAddForm):
+    ...
+
+
+

@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.db.models import Count, Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 
 from petStangram.accounts.forms import AppUserCreationForm, AppUserLoginForm, ProfileEditForm
 from petStangram.accounts.models import Profile
@@ -37,6 +39,15 @@ class ProfileEditView(UpdateView):
 
     def get_success_url(self):
         return reverse('profile-details', kwargs={'pk': self.object.pk})
+
+class ProfileDetailsView(LoginRequiredMixin ,DetailView):
+    model = Profile
+    template_name = 'accounts/profile-details-page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_likes'] = self.object.photo_set.annotate(num_likes=Count('likes')).aggregate(total_likes=Sum('num_likes'))['total_likes'] or 0
+        return context
 
 def profile_delete(request, pk):
     return render(request, 'accounts/profile-delete-page.html', {'pk': pk})
