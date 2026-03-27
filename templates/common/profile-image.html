@@ -1,0 +1,8 @@
+{% load static %}
+<div class="image">
+    {% if photo.user.profile.profile_picture %}
+    <img src="{{ photo.user.profile.profile_picture.url }}" alt="profile">
+    {% else %}
+    <img src="{% static 'images/person.png' %}" alt="profile">
+    {% endif %}
+</div>

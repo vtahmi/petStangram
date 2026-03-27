@@ -22,7 +22,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    profile_picture = models.URLField(blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True,null=True)
 
     @property
     def full_name(self):

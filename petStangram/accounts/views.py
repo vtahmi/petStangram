@@ -46,7 +46,10 @@ class ProfileDetailsView(LoginRequiredMixin ,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['total_likes'] = self.object.photo_set.annotate(num_likes=Count('likes')).aggregate(total_likes=Sum('num_likes'))['total_likes'] or 0
+        context['total_likes'] = self.object.user.photo_set.annotate(num_likes=Count('like')).aggregate(total_likes=Sum('num_likes'))['total_likes'] or 0
+        context['pets_count'] = self.object.user.pet_set.count()
+        context['photos_count'] = self.object.user.photo_set.count()
+
         return context
 
 def profile_delete(request, pk):
